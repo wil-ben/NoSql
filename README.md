@@ -60,8 +60,8 @@ RPUSH fruits "banane"
 LPUSH fruits "orange"  # Ajoute au début
 
 LRANGE fruits 0 -1      # Affiche tous les éléments (orange, pomme, banane)
-LPOP fruits             # Supprime et retourne "orange"
-RPOP fruits             # Supprime et retourne "banane"
+LPOP fruits             # Supprime le premier de la liste et le retourne (ici c'est orange)
+RPOP fruits             # Supprime le dernier de la liste et le retourne (ici c'est banane)
 ```
 
 ---
@@ -80,7 +80,7 @@ SADD langages "Python"
 SADD langages "Java"
 SADD langages "Python"   # Pas de doublon
 
-SMEMBERS langages        # Affiche Python, Java
+SMEMBERS langages        # Affiche Python, Java (Le doublon Python n'a donc pas été pris en compte)
 SREM langages "Java"     # Supprime "Java"
 ```
 
@@ -90,6 +90,7 @@ SADD setA "a" "b" "c"
 SADD setB "b" "c" "d"
 SUNION setA setB         # Retourne "a", "b", "c", "d"
 ```
+On souligne que **`SUNION`** ne prend pas en compte les doublons lors de la fusion
 
 ---
 
