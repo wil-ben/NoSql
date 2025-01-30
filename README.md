@@ -5,7 +5,7 @@ Redis (Remote Dictionary Server) est un système de stockage de données open-so
 
 ## Installation et Lancement de Redis
 ### Installation sur Linux (via WSL pour Windows)
-Pour utiliser Redis sur un système Windows, il est nécessaire d'installer **WSL (Windows Subsystem for Linux)** afin de pouvoir exécuter un environnement Linux. Ensuite, Redis peut être installé avec les commandes suivantes :
+Pour utiliser Redis sur un système Windows, il est nécessaire d'installer **WSL (Windows Subsystem for Linux)** (ou d'utiliser une VM) afin de pouvoir exécuter un environnement Linux. Ensuite, Redis peut être installé avec les commandes suivantes :
 
 ```bash
 sudo apt-get update
