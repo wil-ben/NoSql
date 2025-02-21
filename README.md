@@ -1,3 +1,4 @@
+# README MongoBD / Redis
 # Redis - Guide Pratique
 
 ## Introduction
@@ -342,7 +343,7 @@ db.films.find(
 ---
 
 ## Conclusion
-Ce fichier regroupe les principales requêtes pour manipuler la base `lesfilms` et effectuer des recherches précises. Vous pouvez les utiliser et les adapter selon vos besoins.
+Ce fichier regroupe les principales requêtes pour manipuler la base `lesfilms` et effectuer des recherches précises. 
 
 
 
