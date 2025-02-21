@@ -2,9 +2,9 @@
 
 ## Introduction
 
-**Apache CouchDB** est une base de données NoSQL orientée documents, conçue pour le stockage en JSON, l'accès via HTTP et l'utilisation de **MapReduce** pour interroger les données. Doté d'une réplication distribuée et d'une architecture flexible, il est idéal pour les applications web et mobiles.
+**Apache CouchDB** est une base de données NoSQL orientée documents qui utilise JSON, une API REST et MapReduce pour interroger les données. Sa capacité de réplication distribuée en fait un choix idéal pour les applications web et mobiles.
 
-Ce document présente les étapes essentielles pour installer CouchDB, manipuler des documents et exploiter MapReduce pour réaliser des requêtes avancées.
+Ce rapport présente l'installation de CouchDB, la manipulation de documents et l'utilisation de MapReduce pour des traitements avancés.
 
 ---
 
@@ -19,7 +19,7 @@ docker run -d --name couchdb \
   -p 5984:5984 \
   couchdb:latest
 ```
-- `COUCHDB_USER` et `COUCHDB_PASSWORD` permettent de définir un compte administrateur.
+- `COUCHDB_USER` et `COUCHDB_PASSWORD` définissent un administrateur.
 - `-p 5984:5984` expose CouchDB sur le port 5984.
 
 ### 1.2 Validation de l'installation
@@ -27,7 +27,7 @@ docker run -d --name couchdb \
 ```bash
 curl -X GET http://admin:secret@localhost:5984/
 ```
-Une réponse contenant `{"couchdb":"Welcome", "version":"X.X.X"}` confirme que l'installation est réussie.
+Une réponse contenant `{"couchdb":"Welcome", "version":"X.X.X"}` confirme le bon fonctionnement.
 
 ---
 
@@ -41,7 +41,7 @@ curl -X PUT http://admin:secret@localhost:5984/films
 
 ### 2.2 Ajout de documents
 
-#### Insertion d'un document unique
+#### Document unique
 
 ```bash
 curl -X POST http://admin:secret@localhost:5984/films \
@@ -49,7 +49,7 @@ curl -X POST http://admin:secret@localhost:5984/films \
   -d '{"title":"Inception", "year":2010}'
 ```
 
-#### Insertion en lot
+#### Ajout en masse
 
 ```bash
 curl -X POST http://admin:secret@localhost:5984/films/_bulk_docs \
@@ -57,15 +57,15 @@ curl -X POST http://admin:secret@localhost:5984/films/_bulk_docs \
   -d @films.json
 ```
 
-### 2.3 Consultation et mise à jour de documents
+### 2.3 Consultation et mise à jour
 
-#### Lecture d'un document
+#### Lecture
 
 ```bash
 curl -X GET http://admin:secret@localhost:5984/films/doc_id
 ```
 
-#### Modification d'un document existant
+#### Modification
 
 ```bash
 curl -X PUT http://admin:secret@localhost:5984/films/doc_id \
@@ -79,7 +79,7 @@ curl -X PUT http://admin:secret@localhost:5984/films/doc_id \
 
 ### 3.1 Nombre de films par année
 
-#### Fonction Map
+#### Map
 
 ```javascript
 function (doc) {
@@ -89,7 +89,7 @@ function (doc) {
 }
 ```
 
-#### Fonction Reduce
+#### Reduce
 
 ```javascript
 function (keys, values, rereduce) {
@@ -99,7 +99,7 @@ function (keys, values, rereduce) {
 
 ### 3.2 Films par acteur
 
-#### Fonction Map
+#### Map
 
 ```javascript
 function (doc) {
@@ -111,7 +111,7 @@ function (doc) {
 }
 ```
 
-#### Fonction Reduce
+#### Reduce
 
 ```javascript
 function (keys, values) {
@@ -121,7 +121,7 @@ function (keys, values) {
 
 ### 3.3 Films par réalisateur
 
-#### Fonction Map
+#### Map
 
 ```javascript
 function (doc) {
@@ -131,7 +131,7 @@ function (doc) {
 }
 ```
 
-#### Fonction Reduce
+#### Reduce
 
 ```javascript
 function (keys, values) {
@@ -145,8 +145,6 @@ function (keys, values) {
 
 ### 4.1 Modélisation des documents
 
-Chaque ligne de la matrice est enregistrée sous forme de document JSON :
-
 ```json
 {
   "page": "P1",
@@ -159,7 +157,7 @@ Chaque ligne de la matrice est enregistrée sous forme de document JSON :
 
 ### 4.2 Calcul de la norme des vecteurs
 
-#### Fonction Map
+#### Map
 
 ```javascript
 function (doc) {
@@ -171,7 +169,7 @@ function (doc) {
 }
 ```
 
-#### Fonction Reduce
+#### Reduce
 
 ```javascript
 function (keys, values, rereduce) {
@@ -181,7 +179,7 @@ function (keys, values, rereduce) {
 
 ### 4.3 Produit Matrice-Vecteur
 
-#### Fonction Map
+#### Map
 
 ```javascript
 function (doc) {
@@ -191,7 +189,7 @@ function (doc) {
 }
 ```
 
-#### Fonction Reduce
+#### Reduce
 
 ```javascript
 function (keys, values, rereduce) {
@@ -203,12 +201,5 @@ function (keys, values, rereduce) {
 
 ## 5. Conclusion
 
-CouchDB se distingue par :
-- Son stockage **JSON natif**
-- Son interface **RESTful**
-- Son mécanisme de requêtes **MapReduce**
-- Sa **réplication distribuée**
-
-L'utilisation de **MapReduce** permet des agrégations puissantes et efficaces, en particulier pour les applications web et mobiles nécessitant une synchronisation répartie des données.
-
+CouchDB est une base NoSQL performante pour la gestion de données JSON avec une API REST et MapReduce. Son architecture réplicable et distribuée en fait un excellent choix pour les applications modernes.
 
